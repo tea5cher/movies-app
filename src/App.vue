@@ -1,30 +1,38 @@
 <template>
   <div id="app">
-      <b-button>Кнопка</b-button>
-      <b-button variant="danger">Кнопка</b-button>
-      <b-button variant="success">Кнопка</b-button>
-      <b-button variant="outline-primary">Кнопка</b-button>
+      <MoviesList :list="moviesList" />
+      <Poster />
   </div>
 </template>
 
 <script>
-
+import { mapActions, mapGetters } from 'vuex'
+import MoviesList from './components/MoviesList.vue'
+import Poster from './components/Poster.vue'
 
 export default {
   name: 'App',
   components: {
- 
+    MoviesList,
+    Poster
+  },
+  mounted(){
+    // this.fetchMovies();
+  },
+  computed: {
+    ...mapGetters('movies', ['moviesList'])
+  },
+  methods: {
+    ...mapActions('movies', ['fetchMovies']),
+    
   }
 }
 </script>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Arial, Helvetica,  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
