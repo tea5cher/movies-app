@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
+import './plugins/bootstrap'
+import './plugins/axios'
 
 Vue.config.productionTip = false
 
