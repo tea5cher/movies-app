@@ -41,5 +41,6 @@ export default {
     .list-title {
         font-size: 50px;
         margin-bottom: 30px;
+        color: #fff;
     }
 </style>

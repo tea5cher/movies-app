@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-      <MoviesList :list="moviesList" />
       <Poster />
+      <MoviesList :list="moviesList" />
   </div>
 </template>
 
@@ -34,5 +34,6 @@ export default {
   font-family: Arial, Helvetica,  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
 }
 </style>

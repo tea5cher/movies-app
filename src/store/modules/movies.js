@@ -20,7 +20,7 @@ const moviesStore = {
         moveesPerPage: 12,
         currentPage: 1,
         movies: {},
-        bg: 'red'
+        bg: 'linear-gradient(45deg, rgb(0,3,38) 0%, rgb(82, 15, 117) 100%)'
     },
     getters: {
         slisedIDs: ({ top250IDs}) => (from, to) => top250IDs.slice(from, to),
@@ -32,6 +32,10 @@ const moviesStore = {
     mutations: {
         [MOVIES](state, value) {
             state.movies = value;
+        },
+        POSTERBG(state, value) {
+            state.bg = value;
+            console.log(state, value)
         }
     },
     actions: {
@@ -57,6 +61,14 @@ const moviesStore = {
             } catch(err) {
                 console.log(err);
             }
+        },
+        changePosterBg({getters, commit}, item){
+            const {posterBg} = getters;
+            // console.log(posterBg);
+            
+            const newBg = `url(${item})`
+            console.log(newBg);
+            commit('POSTERBG', newBg);
         }
     }
 }

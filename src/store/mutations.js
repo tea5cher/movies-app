@@ -1,3 +1,3 @@
 export default {
-    MOVIES: "MOVIES"
+    MOVIES: "MOVIES",
 };

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div @mouseenter="onMouseEnter" class="movie-item mb-3">
+        <div @mouseenter="onMouseEnter(movie.Poster)" class="movie-item mb-3">
             <div class="movie-item-poster" :style="posterBg"></div>
             <div class="movie-info-wrap d-flex flex-column justify-content-between">
                 <div class="movie-item-info">
@@ -22,6 +22,7 @@
 
 
 <script>
+import { mapActions } from 'vuex';
 export default {
     name: 'MovieItem',
     props:{
@@ -35,11 +36,13 @@ export default {
             return {
                 "background-image": `url(${this.movie.Poster})`,
             }
-        }
+        },
+        
     },
     methods: {
-        onMouseEnter(){
-            console.log(this.movie.Title);
+        ...mapActions('movies',['changePosterBg']),
+        onMouseEnter(title){
+            this.changePosterBg(title);
         }
     }
 }
