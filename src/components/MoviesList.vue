@@ -4,7 +4,7 @@
         <b-row>
             <template v-if='isExist'>
                 <b-col cols="3" v-for="(movie, key) in list" :key="key">
-                    <MovieItem :movie="movie"/>
+                    <MovieItem @removeMovie="onRemoveMovie" :movie="movie"/>
                 </b-col>
             </template>
             <template v-else>
@@ -16,6 +16,7 @@
 
 
 <script>
+import { mapActions } from 'vuex';
 import MovieItem from './MovieItem.vue'
 
 export default {
@@ -28,6 +29,17 @@ export default {
             type: Object,
             default: ()=> ({}),
         }
+    },
+    methods: {
+        ...mapActions('movies', ['removeMovieFromList']),
+        async onRemoveMovie({id, title}) {
+            console.log(id, title);
+            const bool = await this.$bvModal.msgBoxConfirm(`Are you sure delete '${title}'?`)
+            if (bool){
+                console.log('sd 1')
+                this.removeMovieFromList(id);
+            }
+        }   
     },
     computed: {
         isExist(){
