@@ -50,6 +50,8 @@ export default {
         font-size: 16px;
         color: #fff;
         box-shadow: none;
+        // position: fixed;
+        // bottom: 20px;
     }
     .movies-pagination ::v-deep .pagination .page-item.active .page-link{
         border-color: #fff;
