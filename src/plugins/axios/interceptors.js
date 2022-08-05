@@ -9,7 +9,7 @@ function setParams(config) {
 }
 
 function returnData(res){
-    // console.log(res.data)
+    console.log('ss')
     return res.data
 }
 

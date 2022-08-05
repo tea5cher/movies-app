@@ -1,6 +1,6 @@
 <template>
     <b-container>
-        <h3 class="list-title">IMDB Top 250</h3>
+        <h3 class="list-title">{{ listTitle }}</h3>
         <b-row>
             <template v-if='isExist'>
                 <b-col cols="3" v-for="(movie, key) in list" :key="key">
@@ -16,7 +16,7 @@
 
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import MovieItem from './MovieItem.vue'
 
 export default {
@@ -32,19 +32,30 @@ export default {
     },
     methods: {
         ...mapActions('movies', ['removeMovieFromList']),
+        ...mapActions(['showNotify']),
         async onRemoveMovie({id, title}) {
-            console.log(id, title);
-            const bool = await this.$bvModal.msgBoxConfirm(`Are you sure delete '${title}'?`)
+            const bool = await this.$bvModal.msgBoxConfirm(
+                `Are you sure delete '${title}'?
+            `)
             if (bool){
-                console.log('sd 1')
                 this.removeMovieFromList(id);
+                this.showNotify({
+                    msg: "Movie deleted successful",
+                    variant: "success",
+                    title: "Success"
+                });
             }
         }   
     },
     computed: {
+        ...mapGetters('movies', ['isSearch']),
         isExist(){
             return Boolean(Object.keys(this.list).length)
-        }
+        },
+        listTitle() {
+            return this.isSearch ? 'Search results' : 'Top 250 IMDB'
+        },
+        
     },
 }
 </script>
