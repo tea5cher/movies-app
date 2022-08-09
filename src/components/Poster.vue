@@ -17,11 +17,7 @@ export default {
 
 <style lang="scss" scoped>
     .poster-bg{
-        // background-color: aqua;
         z-index: -2;
-        // opacity: 0.7;
-        // width: 100vw;
-        // height: 100vh;
         position: absolute;
         top: 0;
         left: 0;
