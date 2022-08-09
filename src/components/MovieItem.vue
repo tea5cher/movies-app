@@ -9,7 +9,7 @@
                 </div>
                 <div class="movie-item-controls row no-gutters">
                     <div class="col pr-2">
-                        <BButton class="button-control" size="md" block variant="outline-light">Edit</BButton>
+                        <BButton class="button-control" size="md" block variant="outline-light" @click="onOpenModalMovie">Info</BButton>
                     </div>
                     <div class="col pl-2">
                         <BButton @click="emitRemoveMovie(movie.imdbID, movie.Title)"   class="button-control" size="md" block variant="outline-light">Remove</BButton>
@@ -46,6 +46,9 @@ export default {
         },
         emitRemoveMovie(id, title){
             this.$emit('removeMovie', {id: id, title:title})
+        },
+        onOpenModalMovie(){
+            this.$emit("emitOpenModalMovie", this.movie.imdbID)
         }
     }
 }
